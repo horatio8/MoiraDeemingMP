@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Clean Up Victoria — Sign the Petition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { background: #fff; }
+  .cuv-root { min-height: 100vh; background: #fff; color: var(--charcoal); font-family: 'Inter', system-ui, sans-serif; }
+  .cuv-hero {
+    padding: 96px 64px 72px;
+    color: #fff;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(155,89,182,0.45), transparent 55%),
+      radial-gradient(ellipse at 100% 100%, rgba(255,215,0,0.1), transparent 50%),
+      linear-gradient(135deg, var(--purple-darkest), var(--purple-deep) 60%, var(--purple) 110%);
+    text-align: center;
+  }
+  .cuv-hero .hero-badge { margin-bottom: 16px; }
+  .cuv-hero h1 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 1.02;
+    margin: 0 auto 20px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    max-width: 16ch;
+  }
+  .cuv-hero p {
+    font-size: 19px;
+    line-height: 1.5;
+    max-width: 640px;
+    margin: 0 auto;
+    color: rgba(255,255,255,0.86);
+  }
+  .cuv-body {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 80px 48px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .cuv-body h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 44px;
+    line-height: 1;
+    margin: 0 0 16px;
+    color: var(--purple-deep);
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+  .cuv-body p.lead {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    margin: 0 0 22px;
+  }
+  .cuv-body ul.bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .cuv-body ul.bullets li {
+    display: flex; gap: 12px;
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: var(--charcoal);
+  }
+  .cuv-body ul.bullets .tick {
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    border-radius: 999px;
+    background: var(--purple);
+    color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  .cuv-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .cuv-stat {
+    background: var(--purple-faint);
+    border: 1px solid rgba(107,45,139,0.15);
+    border-radius: 14px;
+    padding: 18px;
+  }
+  .cuv-stat .num {
+    font-family: 'Anton', sans-serif;
+    font-size: 36px;
+    color: var(--purple);
+    line-height: 1;
+  }
+  .cuv-stat .lbl {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    color: var(--charcoal);
+    opacity: 0.78;
+  }
+  .cuv-petition-wrap { position: sticky; top: 32px; }
+  .cuv-footer {
+    background: #0d0814;
+    color: rgba(255,255,255,0.6);
+    padding: 40px 48px;
+    text-align: center;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .cuv-footer a { color: var(--gold); text-decoration: none; }
+  @media (max-width: 1023px) {
+    .cuv-hero { padding: 72px 24px 56px; }
+    .cuv-body { grid-template-columns: 1fr; padding: 56px 24px; gap: 40px; }
+    .cuv-petition-wrap { position: static; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="../content.jsx"></script>
+<script type="text/babel" src="../petition.jsx"></script>
+
+<script type="text/babel">
+  const CAMPAIGN = {
+    id: 'cuv',
+    badge: 'Clean Up Victoria',
+    name: 'Clean Up Victoria',
+    petitionTitle: 'Clean Up Victoria',
+    petitionLead: 'Demand the Victorian Parliament restore real consequences for repeat offenders, properly fund frontline policing in Western Melbourne, and put community safety ahead of bail-and-release politics.',
+  };
+
+  function CleanUpVictoriaApp() {
+    const [count, setCount] = React.useState(6128);
+    React.useEffect(() => {
+      const id = setInterval(() => setCount(c => c + Math.floor(Math.random() * 3) + 1), 5000);
+      return () => clearInterval(id);
+    }, []);
+    return (
+      <div className="cuv-root">
+        <div className="cuv-hero">
+          <div className="hero-badge">Active Petition · Victoria</div>
+          <h1>Clean Up <span className="gold-word">Victoria.</span></h1>
+          <p>Real consequences. Properly funded police. Community safety put first. Sign the petition demanding the Victorian Parliament put law-abiding families ahead of repeat offenders.</p>
+        </div>
+
+        <div className="cuv-body">
+          <div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--purple)', marginBottom: 12 }}>The Campaign</div>
+            <h2>Western Melbourne deserves better than catch-and-release.</h2>
+            <p className="lead">
+              Home invasions, carjackings, and youth crime are tearing through suburbs that used to be safe. The Government promises reviews. The Opposition promises statements. I'm taking the fight directly to Parliament — and I need your name on the petition to do it.
+            </p>
+            <p className="lead" style={{ color: 'var(--grey)' }}>
+              Your signature is filed publicly with my office and tabled in the Legislative Council. It is the most direct way to put pressure on the Premier to act.
+            </p>
+
+            <ul className="bullets">
+              <li><span className="tick">✓</span><span>Mandatory minimums for repeat violent and weapons offences</span></li>
+              <li><span className="tick">✓</span><span>End the bail-and-release loop for serious recidivists</span></li>
+              <li><span className="tick">✓</span><span>Fund 500 additional frontline officers for the Western suburbs</span></li>
+              <li><span className="tick">✓</span><span>Proper victim notification and a statutory right to be heard</span></li>
+              <li><span className="tick">✓</span><span>Independent review of every juvenile bail decision in 2024–25</span></li>
+            </ul>
+
+            <div className="cuv-stats">
+              <div className="cuv-stat"><div className="num">+34%</div><div className="lbl">Aggravated Burglary YoY</div></div>
+              <div className="cuv-stat"><div className="num">3,800+</div><div className="lbl">Carjackings Last 12 Months</div></div>
+              <div className="cuv-stat"><div className="num">0</div><div className="lbl">Mandatory Minimums</div></div>
+              <div className="cuv-stat"><div className="num">1</div><div className="lbl">Bill to Restore Them</div></div>
+            </div>
+          </div>
+          <div className="cuv-petition-wrap">
+            <PetitionForm
+              campaign={CAMPAIGN}
+              count={count}
+              onSign={() => setCount(c => c + 1)}
+              onDonateClick={() => {}}
+            />
+          </div>
+        </div>
+
+        <div className="cuv-footer">
+          Authorised by J. Smith, 1 Example St, Caroline Springs VIC 3023.
+          Donations over $1,000 are disclosed to the Victorian Electoral Commission.
+          Maximum donation per financial year: $4,970. <a href="../notowers/">View the Stop the Towers petition →</a>
+        </div>
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<CleanUpVictoriaApp />);
+</script>
+</body>
+</html>
