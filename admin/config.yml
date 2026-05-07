@@ -21,6 +21,7 @@ collections:
     delete: false
     fields:
       - { label: Page title (browser tab), name: title, widget: string }
+      - { label: Canonical share URL, name: shareUrl, widget: string, required: false, hint: "Used by the share buttons (Facebook, X, WhatsApp, etc.) so links always point at the public domain. e.g. https://www.moiradeeming.com/cleanupvictoria" }
       - { label: Eyebrow tag, name: eyebrow, widget: string, hint: "e.g. Active Petition · Community Safety" }
       - { label: Eyebrow font size (px), name: eyebrowSize, widget: number, value_type: int, required: false, hint: "Default ~11. Set higher to enlarge the gold pill." }
       - { label: Hero photo, name: photoUrl, widget: image, required: false, hint: "Replaces the gradient placeholder. Leave empty to keep placeholder." }

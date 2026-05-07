@@ -206,7 +206,9 @@
         });
     });
 
-    var url = location.href;
+    // Canonical share URL (e.g. www.moiradeeming.com/...) so links work even
+    // when the page is being viewed via a Vercel preview alias.
+    var url = c.shareUrl || location.href;
     var shareText = (c.petition && c.petition.shareText) || c.title || '';
     var emailSubject = shareText || (c.title || 'Sign this petition');
     var emailBody = (shareText ? shareText + '\n\n' : '') + url;
