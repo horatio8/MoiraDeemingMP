@@ -1,0 +1,85 @@
+backend:
+  name: github
+  repo: horatio8/MoiraDeemingMP
+  branch: campaigns
+  base_url: https://moira-deeming-mp-git-campaigns-tellerconsulting.vercel.app
+  auth_endpoint: api/auth
+
+publish_mode: simple
+media_folder: "media"
+public_folder: "/media"
+
+collections:
+  - name: petitions
+    label: Petition Pages
+    label_singular: Petition Page
+    folder: content
+    extension: json
+    format: json
+    identifier_field: title
+    create: false
+    delete: false
+    fields:
+      - { label: Page title (browser tab), name: title, widget: string }
+      - { label: Eyebrow tag, name: eyebrow, widget: string, hint: "e.g. Active Petition · Community Safety" }
+
+      - label: Headline
+        name: headline
+        widget: object
+        fields:
+          - { label: Before highlighted word, name: before, widget: string, required: false }
+          - { label: Highlighted word (gold), name: highlight, widget: string }
+          - { label: After highlighted word, name: after, widget: string, required: false }
+
+      - { label: Lede paragraph, name: lede, widget: text }
+      - { label: Photo placeholder caption, name: photoCaption, widget: string, required: false }
+
+      - label: Stats (3 numbers shown above the live signature counter)
+        name: stats
+        widget: list
+        max: 3
+        fields:
+          - { label: Number, name: num, widget: string }
+          - { label: Label, name: label, widget: string }
+          - { label: Source, name: source, widget: string, required: false }
+
+      - label: Argument (the case for the petition)
+        name: argument
+        widget: object
+        fields:
+          - { label: Section label, name: sectionLabel, widget: string, default: "The Campaign" }
+          - { label: Main heading, name: h2, widget: string }
+          - { label: Lede paragraph, name: lede, widget: text }
+          - { label: Body paragraph, name: body, widget: text, required: false }
+          - { label: Pull-quote, name: quote, widget: text, required: false }
+          - { label: Pull-quote citation, name: quoteCite, widget: string, required: false, default: "— Moira Deeming MP, Legislative Council" }
+          - { label: Plan heading, name: planHeading, widget: string, default: "What I'm asking the Parliament to do" }
+          - label: Plan items
+            name: plan
+            widget: list
+            field: { label: Item, name: item, widget: text }
+          - { label: "Why-it-matters heading", name: whyHeading, widget: string, default: "Why your signature matters" }
+          - { label: "Why-it-matters body", name: whyBody, widget: text }
+
+      - label: Sources cited on the page
+        name: sources
+        widget: list
+        fields:
+          - { label: Citation text, name: text, widget: string }
+          - { label: URL, name: url, widget: string, required: false }
+
+      - label: Petition card (right column form)
+        name: petition
+        widget: object
+        fields:
+          - { label: Card heading, name: h2, widget: string, default: "Sign the Petition" }
+          - { label: Card lede, name: lede, widget: text }
+          - { label: Submit button label, name: submitLabel, widget: string, default: "Add My Name to the Petition" }
+          - { label: Success heading, name: successHeading, widget: string, default: "Thank you." }
+          - { label: Success body, name: successBody, widget: text }
+          - { label: Share post text, name: shareText, widget: string }
+          - { label: Form receiver URL, name: receiverUrl, widget: string, hint: "Campaign Nucleus form receiver. Submissions POST here." }
+          - { label: Initial signature count, name: initialCount, widget: number, value_type: int, default: 0 }
+          - { label: Postcode field placeholder, name: postcodePlaceholder, widget: string, required: false }
+
+      - { label: "Authorised-by line (legal footer)", name: vec, widget: text }

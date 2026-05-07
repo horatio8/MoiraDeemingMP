@@ -1,0 +1,226 @@
+/* Shared renderer + form handler for petition pages.
+   Each page sets window.PETITION_SLUG to the JSON filename (without .json).
+   Content lives in /content/<slug>.json — edit via the CMS at /admin/. */
+
+(function () {
+  var slug = window.PETITION_SLUG;
+  if (!slug) { console.error('window.PETITION_SLUG is not set'); return; }
+
+  var counter = 0;
+  var counterEls = [];
+
+  function escapeHtml(str) {
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function render(c) {
+    document.title = c.title || 'Petition';
+
+    // Hero
+    var eyebrow = document.querySelector('[data-bind="eyebrow"]');
+    if (eyebrow) eyebrow.textContent = c.eyebrow || '';
+
+    var h1 = document.querySelector('[data-bind="headline"]');
+    if (h1) {
+      var hl = c.headline || {};
+      var parts = [];
+      if (hl.before) parts.push(escapeHtml(hl.before));
+      if (hl.highlight) parts.push('<span class="gold-word">' + escapeHtml(hl.highlight) + '</span>');
+      if (hl.after) parts.push(escapeHtml(hl.after));
+      h1.innerHTML = parts.join(' ');
+    }
+
+    var lede = document.querySelector('[data-bind="lede"]');
+    if (lede) lede.textContent = c.lede || '';
+
+    // Photo placeholder caption
+    var photoTag = document.querySelector('[data-bind="photoCaption"]');
+    if (photoTag) photoTag.textContent = c.photoCaption || '';
+
+    // Stats — N stats from content + 1 live signature counter
+    var statsEl = document.querySelector('[data-bind="stats"]');
+    if (statsEl) {
+      var statsHtml = (c.stats || []).map(function (s) {
+        return '<div class="stat">' +
+          '<div class="num">' + escapeHtml(s.num) + '</div>' +
+          '<div class="lbl">' + escapeHtml(s.label) + '</div>' +
+          (s.source ? '<div class="src">' + escapeHtml(s.source) + '</div>' : '') +
+          '</div>';
+      }).join('');
+      statsHtml += '<div class="stat">' +
+        '<div class="num" id="stat-sigs">' + counter.toLocaleString() + '</div>' +
+        '<div class="lbl">Victorians Signed</div>' +
+        '<div class="src">Live counter</div>' +
+        '</div>';
+      statsEl.innerHTML = statsHtml;
+    }
+
+    // Argument
+    var arg = c.argument || {};
+    var setText = function (sel, val) {
+      var el = document.querySelector(sel);
+      if (el) el.textContent = val || '';
+    };
+    setText('[data-bind="argSectionLabel"]', arg.sectionLabel);
+    setText('[data-bind="argH2"]', arg.h2);
+    setText('[data-bind="argLede"]', arg.lede);
+    setText('[data-bind="argBody"]', arg.body);
+    setText('[data-bind="argQuote"]', arg.quote);
+    setText('[data-bind="argQuoteCite"]', arg.quoteCite);
+    setText('[data-bind="argPlanHeading"]', arg.planHeading);
+    setText('[data-bind="argWhyHeading"]', arg.whyHeading);
+    setText('[data-bind="argWhyBody"]', arg.whyBody);
+
+    var planEl = document.querySelector('[data-bind="argPlan"]');
+    if (planEl) {
+      planEl.innerHTML = (arg.plan || []).map(function (item, i) {
+        return '<li><span class="marker">' + (i + 1) + '</span><span>' + escapeHtml(item) + '</span></li>';
+      }).join('');
+    }
+
+    var sourcesEl = document.querySelector('[data-bind="sources"]');
+    if (sourcesEl) {
+      sourcesEl.innerHTML = (c.sources || []).map(function (s) {
+        var label = s.url ? s.url.replace(/^https?:\/\//, '').replace(/\/$/, '') : '';
+        return '<li>' + escapeHtml(s.text) +
+          (s.url ? ' <a href="' + escapeHtml(s.url) + '" target="_blank" rel="noopener">' + escapeHtml(label) + '</a>' : '') +
+          '</li>';
+      }).join('');
+    }
+
+    // Petition card
+    var pet = c.petition || {};
+    setText('[data-bind="petH2"]', pet.h2);
+    setText('[data-bind="petLede"]', pet.lede);
+    var submitBtn = document.querySelector('[data-bind="petSubmit"]');
+    if (submitBtn) submitBtn.textContent = pet.submitLabel || 'Sign';
+    setText('[data-bind="petSuccessHeading"]', pet.successHeading);
+    setText('[data-bind="petSuccessBody"]', pet.successBody);
+
+    var pcInput = document.getElementById('f-postcode');
+    if (pcInput && pet.postcodePlaceholder) pcInput.placeholder = pet.postcodePlaceholder;
+
+    // VEC line
+    setText('[data-bind="vec"]', c.vec);
+
+    // Counter init
+    counter = (pet.initialCount != null) ? pet.initialCount : 0;
+    counterEls = [
+      document.getElementById('stat-sigs'),
+      document.getElementById('form-counter'),
+    ];
+    counterEls.forEach(function (el) { if (el) el.textContent = counter.toLocaleString(); });
+
+    // Live ticker
+    setInterval(function () {
+      counter += Math.floor(Math.random() * 3) + 1;
+      counterEls.forEach(function (el) { if (el) el.textContent = counter.toLocaleString(); });
+    }, 5000);
+
+    // Wire form
+    wireForm(pet, c);
+  }
+
+  function showErr(id, on) {
+    var e = document.getElementById('e-' + id);
+    var f = document.getElementById('f-' + id);
+    if (e) e.style.display = on ? 'block' : 'none';
+    if (f) f.classList.toggle('error', on);
+  }
+
+  function wireForm(pet, c) {
+    var form = document.getElementById('pet-form');
+    if (!form) return;
+
+    var submitBtn = document.getElementById('f-submit');
+    var fail = document.getElementById('fail-msg');
+    var postI = document.getElementById('f-postcode');
+    if (postI) {
+      postI.addEventListener('input', function () {
+        postI.value = postI.value.replace(/\D/g, '').slice(0, 4);
+      });
+    }
+
+    var receiver = (pet && pet.receiverUrl) || '';
+    var originalLabel = submitBtn ? submitBtn.textContent : 'Sign';
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (fail) fail.style.display = 'none';
+
+      var first = (document.getElementById('f-first').value || '').trim();
+      var last = (document.getElementById('f-last').value || '').trim();
+      var email = (document.getElementById('f-email').value || '').trim();
+
+      var ok = true;
+      if (!first) { showErr('first', true); ok = false; } else showErr('first', false);
+      if (!last) { showErr('last', true); ok = false; } else showErr('last', false);
+      if (!/.+@.+\..+/.test(email)) { showErr('email', true); ok = false; } else showErr('email', false);
+      if (!ok) return;
+
+      if (!receiver) {
+        if (fail) {
+          fail.textContent = 'Form receiver URL is not configured. Please add it in the CMS.';
+          fail.style.display = 'block';
+        }
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+      var fd = new FormData(form);
+
+      fetch(receiver, { method: 'POST', body: fd, mode: 'no-cors' })
+        .then(function () {
+          var wrap = document.getElementById('petition-form-wrap');
+          var thanks = document.getElementById('petition-thanks');
+          if (wrap) wrap.style.display = 'none';
+          if (thanks) thanks.style.display = 'block';
+          var nameEl = document.getElementById('thanks-name');
+          if (nameEl) nameEl.textContent = 'Thank you, ' + (first || 'friend') + '.';
+          counter += 1;
+          counterEls.forEach(function (el) { if (el) el.textContent = counter.toLocaleString(); });
+        })
+        .catch(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+          if (fail) fail.style.display = 'block';
+        });
+    });
+
+    var copyBtn = document.getElementById('copy-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function (e) {
+        if (navigator.clipboard) navigator.clipboard.writeText(location.href);
+        e.currentTarget.textContent = 'Copied';
+        setTimeout(function () { e.currentTarget.textContent = 'Copy Link'; }, 1500);
+      });
+    }
+
+    var fbBtn = document.getElementById('share-fb');
+    var xBtn = document.getElementById('share-x');
+    if (fbBtn) fbBtn.addEventListener('click', function () {
+      window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href), '_blank');
+    });
+    if (xBtn) xBtn.addEventListener('click', function () {
+      var text = (c.petition && c.petition.shareText) || c.title || '';
+      window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent(text), '_blank');
+    });
+  }
+
+  fetch('/content/' + slug + '.json', { cache: 'no-store' })
+    .then(function (r) {
+      if (!r.ok) throw new Error('content load failed');
+      return r.json();
+    })
+    .then(render)
+    .catch(function (err) {
+      console.error(err);
+      var msg = document.createElement('div');
+      msg.style.cssText = 'padding:24px;background:#fef0ef;color:#c0392b;font-family:sans-serif;text-align:center';
+      msg.textContent = 'Failed to load petition content.';
+      document.body.prepend(msg);
+    });
+})();
