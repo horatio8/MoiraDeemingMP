@@ -200,9 +200,9 @@ body {
 }
 .share-row button:hover { background: var(--purple); color: #fff; }
 
-/* ── Photo placeholder ── */
+/* ── Photo placeholder / hero image ── */
 .hero-photo {
-  height: 280px;
+  height: 380px;
   border-radius: 14px;
   background:
     radial-gradient(circle at 60% 30%, rgba(255,215,0,0.22), transparent 50%),
@@ -211,6 +211,11 @@ body {
   position: relative;
   display: flex; align-items: flex-end; padding: 20px;
   box-shadow: 0 16px 40px rgba(42,15,58,0.14);
+  background-size: cover;
+  background-position: center;
+}
+.hero-photo.has-image {
+  border: 1px solid rgba(0,0,0,0.08);
 }
 .hero-photo .photo-tag {
   font-family: 'JetBrains Mono', 'SF Mono', monospace;

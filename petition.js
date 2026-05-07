@@ -20,7 +20,15 @@
 
     // Hero
     var eyebrow = document.querySelector('[data-bind="eyebrow"]');
-    if (eyebrow) eyebrow.textContent = c.eyebrow || '';
+    if (eyebrow) {
+      eyebrow.textContent = c.eyebrow || '';
+      if (c.eyebrowSize) {
+        eyebrow.style.fontSize = c.eyebrowSize + 'px';
+        // scale padding proportionally to keep the pill balanced
+        var scale = c.eyebrowSize / 11;
+        eyebrow.style.padding = (7 * scale).toFixed(0) + 'px ' + (14 * scale).toFixed(0) + 'px';
+      }
+    }
 
     var h1 = document.querySelector('[data-bind="headline"]');
     if (h1) {
@@ -35,9 +43,17 @@
     var lede = document.querySelector('[data-bind="lede"]');
     if (lede) lede.textContent = c.lede || '';
 
-    // Photo placeholder caption
+    // Photo: real image if photoUrl set, else placeholder caption
+    var photoEl = document.querySelector('.hero-photo');
     var photoTag = document.querySelector('[data-bind="photoCaption"]');
-    if (photoTag) photoTag.textContent = c.photoCaption || '';
+    if (c.photoUrl) {
+      if (photoEl) photoEl.classList.add('has-image');
+      if (photoEl) photoEl.style.backgroundImage =
+        'linear-gradient(rgba(0,0,0,0) 60%, rgba(0,0,0,0.35)), url(' + JSON.stringify(c.photoUrl).slice(1, -1) + ')';
+      if (photoTag) photoTag.style.display = 'none';
+    } else {
+      if (photoTag) photoTag.textContent = c.photoCaption || '';
+    }
 
     // Stats — N stats from content + 1 live signature counter
     var statsEl = document.querySelector('[data-bind="stats"]');
