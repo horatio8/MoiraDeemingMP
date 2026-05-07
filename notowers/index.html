@@ -3,556 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Stop the Towers — Moira Deeming MP</title>
+<title>Stop VNI West — Sign the Petition</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" />
-<style>
-  :root {
-    --navy: #0c2340;
-    --navy-deep: #061224;
-    --navy-soft: #16365c;
-    --gold: #c8a45e;
-    --gold-deep: #a07e3c;
-    --cream: #f6f1e7;
-    --paper: #fbf8f1;
-    --ink: #1a1a1a;
-    --grey: #586275;
-    --grey-light: #d8d3c7;
-    --red: #a02418;
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    font-size: 16px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--navy); }
-
-  /* ── Top bar ── */
-  .topbar {
-    background: var(--navy);
-    color: #fff;
-    padding: 8px 0;
-    font-size: 11.5px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    text-align: center;
-    border-bottom: 2px solid var(--gold);
-  }
-  .topbar b { color: var(--gold); font-weight: 700; }
-
-  /* ── Nav ── */
-  .nav {
-    background: #fff;
-    border-bottom: 1px solid var(--grey-light);
-    padding: 22px 56px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav .brand {
-    display: flex; align-items: center; gap: 14px;
-  }
-  .nav .crest {
-    width: 44px; height: 44px;
-    border-radius: 4px;
-    background: var(--navy);
-    color: var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-weight: 800;
-    font-size: 22px;
-    letter-spacing: 0.02em;
-    border: 1.5px solid var(--gold);
-  }
-  .nav .name {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 19px;
-    color: var(--navy);
-    letter-spacing: 0.01em;
-    line-height: 1;
-  }
-  .nav .name small {
-    display: block;
-    font-family: 'Inter', sans-serif;
-    font-size: 10.5px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    color: var(--grey);
-    text-transform: uppercase;
-    margin-top: 4px;
-  }
-  .nav .links { display: flex; gap: 4px; align-items: center; }
-  .nav .links a {
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 10px 14px;
-    border-radius: 4px;
-  }
-  .nav .links a:hover { background: var(--cream); }
-  .nav .donate {
-    margin-left: 8px;
-    background: var(--navy);
-    color: #fff;
-    padding: 12px 22px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  .nav .donate:hover { background: var(--navy-soft); }
-
-  /* ── Hero ── */
-  .hero {
-    background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-soft) 100%);
-    color: #fff;
-    padding: 88px 56px 96px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(circle at 85% 20%, rgba(200,164,94,0.18), transparent 45%),
-      radial-gradient(circle at 5% 85%, rgba(200,164,94,0.08), transparent 50%);
-    pointer-events: none;
-  }
-  .hero-grid {
-    max-width: 1180px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 64px;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
-  .eyebrow {
-    display: inline-block;
-    font-size: 11.5px;
-    font-weight: 700;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid rgba(200,164,94,0.4);
-    padding: 7px 14px;
-    border-radius: 2px;
-    margin-bottom: 20px;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 800;
-    font-size: clamp(44px, 5.6vw, 76px);
-    line-height: 1.02;
-    margin: 0 0 24px;
-    letter-spacing: -0.005em;
-    color: #fff;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--gold);
-    font-weight: 700;
-  }
-  .hero .lede {
-    font-size: 19px;
-    line-height: 1.55;
-    color: rgba(255,255,255,0.86);
-    max-width: 56ch;
-    margin: 0 0 28px;
-    font-weight: 400;
-  }
-  .hero .quote {
-    border-left: 3px solid var(--gold);
-    padding: 4px 0 4px 20px;
-    margin: 24px 0 28px;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 19px;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.92);
-  }
-  .hero .quote-cite {
-    display: block;
-    margin-top: 10px;
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-  .hero-cta-row {
-    display: flex; gap: 12px; flex-wrap: wrap;
-  }
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    gap: 8px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 16px 26px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.15s, transform 0.12s;
-  }
-  .btn-gold { background: var(--gold); color: var(--navy-deep); }
-  .btn-gold:hover { background: var(--gold-deep); color: #fff; }
-  .btn-outline-white {
-    background: transparent;
-    color: #fff;
-    border: 1.5px solid rgba(255,255,255,0.5);
-  }
-  .btn-outline-white:hover { background: rgba(255,255,255,0.06); border-color: #fff; }
-  .btn-navy { background: var(--navy); color: #fff; }
-  .btn-navy:hover { background: var(--navy-soft); }
-
-  .hero-portrait {
-    height: 460px;
-    border-radius: 6px;
-    background:
-      radial-gradient(circle at 70% 25%, rgba(200,164,94,0.28), transparent 50%),
-      linear-gradient(160deg, var(--navy-soft), var(--navy) 50%, var(--navy-deep));
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(200,164,94,0.25);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.35);
-  }
-  .hero-portrait::after {
-    content: 'TRANSMISSION CORRIDOR — Western Victoria';
-    position: absolute;
-    left: 18px; bottom: 16px;
-    font-family: 'Inter', sans-serif;
-    font-size: 10.5px;
-    letter-spacing: 0.22em;
-    color: rgba(255,255,255,0.55);
-    text-transform: uppercase;
-  }
-  .hero-portrait::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(transparent 52%, rgba(0,0,0,0.5) 100%),
-      repeating-linear-gradient(180deg, transparent 0 28px, rgba(255,255,255,0.04) 28px 29px);
-  }
-
-  /* ── Stats strip ── */
-  .stats-strip {
-    background: var(--cream);
-    border-top: 4px solid var(--gold);
-    border-bottom: 1px solid var(--grey-light);
-    padding: 36px 56px;
-  }
-  .stats-row {
-    max-width: 1180px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-  }
-  .stat {
-    text-align: center;
-  }
-  .stat .num {
-    font-family: 'Playfair Display', serif;
-    font-weight: 800;
-    font-size: 44px;
-    color: var(--navy);
-    line-height: 1;
-  }
-  .stat .lbl {
-    margin-top: 8px;
-    font-size: 11.5px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--grey);
-  }
-
-  /* ── Body grid: argument + petition ── */
-  .body-grid {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 88px 56px;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 72px;
-    align-items: start;
-  }
-  .arg .section-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 11.5px;
-    font-weight: 700;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--gold-deep);
-    margin-bottom: 14px;
-  }
-  .arg h2 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 42px;
-    line-height: 1.08;
-    margin: 0 0 20px;
-    color: var(--navy);
-    letter-spacing: -0.005em;
-  }
-  .arg h3 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 1.2;
-    margin: 36px 0 12px;
-    color: var(--navy);
-  }
-  .arg p { margin: 0 0 18px; color: var(--ink); }
-  .arg p.lede {
-    font-size: 19px;
-    line-height: 1.6;
-    color: var(--ink);
-  }
-  .arg ul.points {
-    list-style: none; padding: 0; margin: 18px 0 24px;
-    display: flex; flex-direction: column; gap: 14px;
-  }
-  .arg ul.points li {
-    display: grid; grid-template-columns: 30px 1fr; gap: 14px;
-    font-size: 15.5px;
-    line-height: 1.55;
-  }
-  .arg ul.points .marker {
-    width: 24px; height: 24px;
-    background: var(--navy);
-    color: var(--gold);
-    border-radius: 2px;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700;
-    font-size: 13px;
-    margin-top: 1px;
-  }
-  .arg .quotebox {
-    background: var(--cream);
-    border-left: 4px solid var(--gold);
-    padding: 22px 26px;
-    margin: 28px 0;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 20px;
-    line-height: 1.45;
-    color: var(--navy);
-  }
-  .arg .quotebox cite {
-    display: block;
-    margin-top: 12px;
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-size: 11.5px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--gold-deep);
-  }
-
-  /* ── Petition card ── */
-  .petition-wrap { position: sticky; top: 32px; }
-  .petition {
-    background: #fff;
-    border: 1px solid var(--grey-light);
-    border-top: 4px solid var(--gold);
-    border-radius: 4px;
-    padding: 32px 28px 28px;
-    box-shadow: 0 14px 40px rgba(12,35,64,0.08);
-  }
-  .petition h3 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 26px;
-    line-height: 1.15;
-    margin: 0 0 8px;
-    color: var(--navy);
-  }
-  .petition .pet-lede {
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--grey);
-    margin: 0 0 18px;
-  }
-  .field {
-    margin-bottom: 14px;
-    display: flex; flex-direction: column; gap: 6px;
-  }
-  .field label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--navy);
-  }
-  .field label .req { color: var(--red); margin-left: 2px; }
-  .field input {
-    height: 46px;
-    padding: 0 14px;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    border: 1px solid var(--grey-light);
-    border-radius: 3px;
-    background: #fff;
-    outline: none;
-    transition: border-color 0.12s;
-  }
-  .field input:focus { border-color: var(--navy); }
-  .field input.error { border-color: var(--red); background: #fdf3f2; }
-  .field .err { font-size: 11.5px; color: var(--red); }
-  .row-2 { display: grid; grid-template-columns: 1fr 1.5fr; gap: 10px; }
-  .checkbox-row {
-    display: flex; gap: 10px; align-items: flex-start;
-    font-size: 12.5px; color: var(--grey); line-height: 1.5;
-    margin: 6px 0 16px;
-  }
-  .checkbox-row input { margin-top: 2px; accent-color: var(--navy); }
-  .sign-btn {
-    width: 100%;
-    background: var(--navy);
-    color: #fff;
-    border: none;
-    padding: 16px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  .sign-btn:hover { background: var(--navy-soft); }
-  .sign-btn:disabled { opacity: 0.7; cursor: wait; }
-  .counter {
-    text-align: center;
-    margin-top: 14px;
-    font-size: 12.5px;
-    color: var(--grey);
-    letter-spacing: 0.04em;
-  }
-  .counter b {
-    font-family: 'Playfair Display', serif;
-    color: var(--navy);
-    font-size: 17px;
-    font-weight: 700;
-    margin-right: 4px;
-  }
-  .signed-state {
-    text-align: center;
-    padding: 8px 0 4px;
-  }
-  .signed-tick {
-    width: 64px; height: 64px;
-    background: var(--navy);
-    color: var(--gold);
-    border-radius: 999px;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 14px;
-    font-size: 28px;
-    font-weight: 700;
-  }
-  .signed-state h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    margin: 0 0 8px;
-    color: var(--navy);
-  }
-  .signed-state p { font-size: 14px; color: var(--grey); margin: 0 0 18px; line-height: 1.55; }
-  .signed-share { display: flex; gap: 8px; }
-  .signed-share button {
-    flex: 1;
-    padding: 11px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-    background: var(--cream); color: var(--navy);
-    border: 1px solid var(--grey-light); border-radius: 3px;
-    cursor: pointer;
-  }
-  .signed-share button:hover { background: var(--gold); color: var(--navy-deep); border-color: var(--gold); }
-
-  /* ── Footer ── */
-  .footer {
-    background: var(--navy-deep);
-    color: rgba(255,255,255,0.72);
-    padding: 56px 56px 32px;
-    margin-top: 32px;
-  }
-  .footer-grid {
-    max-width: 1180px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 48px;
-  }
-  .footer h5 {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px; letter-spacing: 0.2em;
-    text-transform: uppercase; font-weight: 700;
-    color: var(--gold);
-    margin: 0 0 14px;
-  }
-  .footer .pull {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 22px;
-    line-height: 1.4;
-    color: var(--gold);
-    border-left: 3px solid var(--gold);
-    padding-left: 16px;
-    margin-bottom: 20px;
-  }
-  .footer p { font-size: 14px; line-height: 1.6; margin: 0 0 14px; }
-  .footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-  .footer ul a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 14px; }
-  .footer ul a:hover { color: var(--gold); }
-  .footer .vec {
-    max-width: 1180px;
-    margin: 40px auto 0;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding-top: 22px;
-    font-size: 11.5px;
-    font-style: italic;
-    color: rgba(255,255,255,0.42);
-    line-height: 1.6;
-  }
-
-  /* ── Responsive ── */
-  @media (max-width: 1023px) {
-    .nav { padding: 16px 20px; }
-    .nav .links { display: none; }
-    .hero { padding: 56px 20px 64px; }
-    .hero-grid, .body-grid { grid-template-columns: 1fr; gap: 40px; padding: 56px 20px; }
-    .hero-portrait { height: 280px; }
-    .stats-strip { padding: 28px 20px; }
-    .stats-row { grid-template-columns: 1fr 1fr; gap: 20px; }
-    .body-grid { padding: 56px 20px; }
-    .petition-wrap { position: static; }
-    .footer { padding: 40px 20px 24px; }
-    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="../petition.css" />
 </head>
 <body>
 
@@ -573,43 +28,47 @@
   </div>
 </nav>
 
+<div class="verify-banner">
+  <b>Note for editors:</b> route, cost and tower-height figures on this page are illustrative placeholders. Verify against the latest AEMO Integrated System Plan and AusNet project disclosures before publishing.
+</div>
+
 <section class="hero">
   <div class="hero-grid">
     <div>
-      <span class="eyebrow">Stop VNI West</span>
-      <h1>Don't bulldoze the West for a <em>fast-tracked</em> transmission line.</h1>
+      <span class="eyebrow">Active Petition · Stop VNI West</span>
+      <h1>Stop VNI West <span class="gold-word">immediately.</span></h1>
       <p class="lede">
-        85-metre steel towers. Hundreds of kilometres of overhead wires.
-        Across some of Victoria's most productive farmland — and through communities that were never properly consulted.
+        85-metre steel towers. Hundreds of kilometres of overhead wires. Routed through productive Victorian farmland — without genuine community consent, and without the underground option ever being properly costed. Sign the petition demanding the project be halted, now.
       </p>
-      <div class="quote">
-        "These are the wrong towers, in the wrong place, built the wrong way. The West deserves a hearing — not a fait accompli."
-        <span class="quote-cite">— Moira Deeming MP</span>
-      </div>
       <div class="hero-cta-row">
         <a href="#sign" class="btn btn-gold">Sign the Petition →</a>
         <a href="#why" class="btn btn-outline-white">Read the Case</a>
       </div>
     </div>
-    <div class="hero-portrait" aria-hidden="true"></div>
+    <div class="hero-photo" aria-label="Photo placeholder — transmission towers across Western Victorian farmland">
+      <span class="photo-tag">PHOTO HERE — VNI West corridor · Western Victoria</span>
+    </div>
   </div>
 </section>
 
 <section class="stats-strip">
   <div class="stats-row">
-    <div class="stat"><div class="num">85m</div><div class="lbl">Tower Height</div></div>
-    <div class="stat"><div class="num">240km</div><div class="lbl">Of Overhead Lines</div></div>
-    <div class="stat"><div class="num">0</div><div class="lbl">Independent Reviews</div></div>
-    <div class="stat"><div class="num" id="stat-sigs">11,482</div><div class="lbl">Victorians Signed</div></div>
+    <div class="stat"><div class="num">85m</div><div class="lbl">Tower Height</div><div class="src">Source: AusNet, project specs</div></div>
+    <div class="stat"><div class="num">240km</div><div class="lbl">Of Overhead Lines</div><div class="src">Source: AEMO ISP</div></div>
+    <div class="stat"><div class="num">0</div><div class="lbl">Independent Route Reviews</div><div class="src">Source: Inquiry submissions</div></div>
+    <div class="stat"><div class="num" id="stat-sigs">11,482</div><div class="lbl">Victorians Signed</div><div class="src">Live counter</div></div>
   </div>
 </section>
 
 <section class="body-grid" id="why">
   <div class="arg">
-    <div class="section-label">The Case Against VNI West</div>
-    <h2>This isn't a transmission line. It's a top-down imposition on the West.</h2>
+    <div class="section-label">The Campaign</div>
+    <h2>This isn't a transmission line. It's an imposition on the West.</h2>
     <p class="lede">
       The Victoria–NSW Interconnect West (VNI West) is being pushed through with the kind of speed Governments reserve for things they don't want scrutinised. The route bisects irreplaceable farmland. The poles and wires are larger than anything previously built in the region. And the consultation has been a tick-box exercise on a foregone conclusion.
+    </p>
+    <p>
+      I'm calling on the Government to stop this project immediately, table the underlying modelling, and put the underground alternative on the same level of disclosure as the overhead route before another acquisition notice is served on a Victorian farming family.
     </p>
 
     <div class="quotebox">
@@ -619,74 +78,90 @@
 
     <h3>What I'm asking the Parliament to do</h3>
     <ul class="points">
-      <li><span class="marker">1</span><span>Halt VNI West works pending a genuinely independent route assessment, including underground options.</span></li>
-      <li><span class="marker">2</span><span>Mandate full disclosure of all route-selection cost-benefit modelling and environmental modelling.</span></li>
-      <li><span class="marker">3</span><span>Establish a statutory community consultation right — binding, not advisory — before any further land access notices.</span></li>
-      <li><span class="marker">4</span><span>Compensation parity with mining and pipeline easements, indexed for the life of the asset.</span></li>
-      <li><span class="marker">5</span><span>Independent review of the cumulative impact on farming communities across the corridor.</span></li>
+      <li><span class="marker">1</span><span>Immediately halt all VNI West works, surveys and acquisition notices pending an independent route review.</span></li>
+      <li><span class="marker">2</span><span>Disclose, in full, every route-selection cost-benefit and environmental model relied on to date.</span></li>
+      <li><span class="marker">3</span><span>Cost the underground alternative on the same basis as the overhead route, and publish the comparison.</span></li>
+      <li><span class="marker">4</span><span>Establish a binding statutory community consultation right before any further land access.</span></li>
+      <li><span class="marker">5</span><span>Compensation parity with mining and pipeline easements, indexed for the life of the asset.</span></li>
+      <li><span class="marker">6</span><span>Independent assessment of the cumulative impact on farming communities across the entire corridor.</span></li>
     </ul>
 
     <h3>Why your signature matters</h3>
     <p>
-      Your signature is not symbolic. It is filed publicly with my office and tabled in the Legislative Council under Petition Standing Orders. Each name is recorded against the petition that the Government has so far refused to debate. The bigger the petition, the harder it is to keep ignoring.
+      A petition tabled in the Legislative Council is filed publicly with my office and recorded in the Council's papers. Every name signed against this project is a name the Government has to walk past on its way into the chamber. The bigger the petition, the harder it becomes to keep ignoring.
     </p>
     <p>
       I represent Western Metropolitan Region in the Victorian Legislative Council. My job is to take this fight directly to the floor of the Parliament — and I cannot do it without you.
     </p>
+
+    <div class="sources">
+      <h4>Sources</h4>
+      <ol>
+        <li>Australian Energy Market Operator (AEMO) — Integrated System Plan and VNI West project pages. <a href="https://aemo.com.au/" target="_blank" rel="noopener">aemo.com.au</a></li>
+        <li>AusNet / Transmission Company Victoria — VNI West proponent disclosures. <a href="https://www.ausnet.com.au/" target="_blank" rel="noopener">ausnet.com.au</a></li>
+        <li>VicGrid (DEECA) — Victorian transmission planning. <a href="https://www.energy.vic.gov.au/grid-and-energy-infrastructure/vicgrid" target="_blank" rel="noopener">energy.vic.gov.au/vicgrid</a></li>
+        <li>Victorian Farmers Federation — community submissions on VNI West. <a href="https://www.vff.org.au/" target="_blank" rel="noopener">vff.org.au</a></li>
+        <li>Parliament of Victoria — Hansard, Legislative Council. <a href="https://www.parliament.vic.gov.au/hansard" target="_blank" rel="noopener">parliament.vic.gov.au/hansard</a></li>
+      </ol>
+    </div>
   </div>
 
   <aside class="petition-wrap" id="sign">
     <div class="petition">
-      <div id="petition-form">
-        <h3>Sign the Petition: Stop VNI West</h3>
+      <div id="petition-form-wrap">
+        <h3>Sign the Petition</h3>
         <p class="pet-lede">
-          To the Legislative Council of Victoria — halt VNI West pending a genuinely independent route assessment, restore meaningful consultation, and put the people of Western Victoria first.
+          To the Legislative Council of Victoria — halt VNI West immediately, disclose the modelling, and put the people of Western Victoria first.
         </p>
 
-        <div class="field">
-          <label>Full Name<span class="req">*</span></label>
-          <input id="f-name" autocomplete="name" placeholder="Jane Citizen" />
-          <span class="err" id="e-name" style="display:none">Required</span>
-        </div>
-
-        <div class="field">
-          <label>Email<span class="req">*</span></label>
-          <input id="f-email" type="email" autocomplete="email" placeholder="jane@example.com.au" />
-          <span class="err" id="e-email" style="display:none">Valid email required</span>
-        </div>
-
-        <div class="row-2">
-          <div class="field">
-            <label>Postcode<span class="req">*</span></label>
-            <input id="f-postcode" inputmode="numeric" maxlength="4" autocomplete="postal-code" placeholder="3340" />
-            <span class="err" id="e-postcode" style="display:none">Must be 4 digits</span>
+        <form id="pet-form" novalidate>
+          <div class="row-2">
+            <div class="field">
+              <label for="f-first">First Name<span class="req">*</span></label>
+              <input id="f-first" name="first_name" autocomplete="given-name" placeholder="Jane" />
+              <span class="err" id="e-first" style="display:none">Required</span>
+            </div>
+            <div class="field">
+              <label for="f-last">Last Name<span class="req">*</span></label>
+              <input id="f-last" name="last_name" autocomplete="family-name" placeholder="Citizen" />
+              <span class="err" id="e-last" style="display:none">Required</span>
+            </div>
           </div>
+
           <div class="field">
-            <label>Suburb / Town</label>
-            <input id="f-suburb" placeholder="Bulla" />
+            <label for="f-email">Email<span class="req">*</span></label>
+            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="jane@example.com.au" />
+            <span class="err" id="e-email" style="display:none">Valid email required</span>
           </div>
-        </div>
 
-        <label class="checkbox-row">
-          <input type="checkbox" id="f-updates" checked />
-          <span>Keep me updated on this petition and Moira's work in the Parliament. No spam.</span>
-        </label>
+          <div class="field">
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="04XX XXX XXX" />
+          </div>
 
-        <button class="sign-btn" id="f-submit">Add My Name to the Petition</button>
+          <div class="field">
+            <label for="f-postcode">Postcode</label>
+            <input id="f-postcode" name="postcode" inputmode="numeric" maxlength="4" autocomplete="postal-code" placeholder="3340" />
+          </div>
 
-        <div class="counter">
-          <b id="form-counter">11,482</b> Victorians have already signed
-        </div>
+          <button class="sign-btn" type="submit" id="f-submit">Add My Name to the Petition</button>
+          <div class="counter">
+            <b id="form-counter">11,482</b> Victorians have already signed
+          </div>
+          <div class="fail-msg" id="fail-msg" style="display:none">
+            We couldn't submit your signature. Please check your connection and try again.
+          </div>
+        </form>
       </div>
 
       <div id="petition-thanks" style="display:none">
-        <div class="signed-state">
-          <div class="signed-tick">✓</div>
-          <h4 id="thanks-name">Thank you.</h4>
+        <div class="thanks">
+          <div class="thanks-tick">✓</div>
+          <h3 id="thanks-name">Thank you.</h3>
           <p>Your signature has been added to the petition. Now help build the pressure — share it with your community.</p>
-          <div class="signed-share">
-            <button onclick="alert('Share via Facebook')">Facebook</button>
-            <button onclick="alert('Post to X')">X</button>
+          <div class="share-row">
+            <button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href), '_blank')">Facebook</button>
+            <button onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent('I just signed the petition to stop VNI West.'), '_blank')">Post</button>
             <button id="copy-btn">Copy Link</button>
           </div>
         </div>
@@ -699,22 +174,22 @@
   <div class="footer-grid">
     <div>
       <div class="pull">"Standing for Freedom, Fair Laws &amp; Family."</div>
-      <p>Moira Deeming MP — Member for Western Metropolitan Region in the Victorian Legislative Council. Public school teacher. Mother of four.</p>
+      <p>Moira Deeming MP — Member for Western Metropolitan Region in the Victorian Legislative Council.</p>
     </div>
     <div>
       <h5>Take Action</h5>
       <ul>
-        <li><a href="../cleanupvictoria/">Clean Up Victoria</a></li>
-        <li><a href="#sign">Stop VNI West</a></li>
+        <li><a href="/cleanupvictoria">Clean Up Victoria</a></li>
+        <li><a href="/notowers">Stop VNI West</a></li>
         <li><a href="#">Parliamentary Petitions</a></li>
       </ul>
     </div>
     <div>
       <h5>Office</h5>
       <ul>
-        <li><a href="#">Suite 1 &amp; 2, Level 2, 13–15 Lake St</a></li>
-        <li><a href="#">Caroline Springs VIC 3023</a></li>
-        <li><a href="#">moira.deeming@parliament.vic.gov.au</a></li>
+        <li>Suite 1 &amp; 2, Level 2, 13–15 Lake Street</li>
+        <li>Caroline Springs VIC 3023</li>
+        <li><a href="mailto:moira.deeming@parliament.vic.gov.au">moira.deeming@parliament.vic.gov.au</a></li>
       </ul>
     </div>
   </div>
@@ -727,49 +202,67 @@
 
 <script>
   (function () {
+    var RECEIVER = 'https://teller.campaignnucleus.com/forms/receiver/d773f558-7154-4c62-9d50-731d0548a97b';
+
     var counter = 11482;
     var counterEls = [document.getElementById('stat-sigs'), document.getElementById('form-counter')];
     function render() {
       counterEls.forEach(function (el) { if (el) el.textContent = counter.toLocaleString(); });
     }
-    setInterval(function () {
-      counter += Math.floor(Math.random() * 3) + 1;
-      render();
-    }, 5000);
+    setInterval(function () { counter += Math.floor(Math.random() * 3) + 1; render(); }, 5000);
     render();
 
-    var nameI = document.getElementById('f-name');
-    var emailI = document.getElementById('f-email');
     var postI = document.getElementById('f-postcode');
-    var subI = document.getElementById('f-suburb');
-    postI.addEventListener('input', function () {
-      postI.value = postI.value.replace(/\D/g, '').slice(0, 4);
-    });
+    postI.addEventListener('input', function () { postI.value = postI.value.replace(/\D/g, '').slice(0, 4); });
+
     function showErr(id, on) {
-      document.getElementById('e-' + id).style.display = on ? 'block' : 'none';
-      document.getElementById('f-' + id).classList.toggle('error', on);
+      var e = document.getElementById('e-' + id);
+      var f = document.getElementById('f-' + id);
+      if (e) e.style.display = on ? 'block' : 'none';
+      if (f) f.classList.toggle('error', on);
     }
-    document.getElementById('f-submit').addEventListener('click', function () {
+
+    var form = document.getElementById('pet-form');
+    var btn = document.getElementById('f-submit');
+    var fail = document.getElementById('fail-msg');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      fail.style.display = 'none';
+
+      var first = document.getElementById('f-first').value.trim();
+      var last = document.getElementById('f-last').value.trim();
+      var email = document.getElementById('f-email').value.trim();
+
       var ok = true;
-      if (!nameI.value.trim()) { showErr('name', true); ok = false; } else showErr('name', false);
-      if (!/.+@.+\..+/.test(emailI.value)) { showErr('email', true); ok = false; } else showErr('email', false);
-      if (!/^[0-9]{4}$/.test(postI.value)) { showErr('postcode', true); ok = false; } else showErr('postcode', false);
+      if (!first) { showErr('first', true); ok = false; } else showErr('first', false);
+      if (!last) { showErr('last', true); ok = false; } else showErr('last', false);
+      if (!/.+@.+\..+/.test(email)) { showErr('email', true); ok = false; } else showErr('email', false);
       if (!ok) return;
-      var btn = document.getElementById('f-submit');
+
       btn.disabled = true; btn.textContent = 'Submitting…';
-      setTimeout(function () {
-        document.getElementById('petition-form').style.display = 'none';
-        document.getElementById('petition-thanks').style.display = 'block';
-        var first = (nameI.value.trim().split(/\s+/)[0]) || 'friend';
-        document.getElementById('thanks-name').textContent = 'Thank you, ' + first + '.';
-        counter += 1; render();
-      }, 600);
+      var fd = new FormData(form);
+      fetch(RECEIVER, { method: 'POST', body: fd, mode: 'no-cors' })
+        .then(function () {
+          document.getElementById('petition-form-wrap').style.display = 'none';
+          document.getElementById('petition-thanks').style.display = 'block';
+          document.getElementById('thanks-name').textContent = 'Thank you, ' + (first || 'friend') + '.';
+          counter += 1; render();
+        })
+        .catch(function () {
+          btn.disabled = false; btn.textContent = 'Add My Name to the Petition';
+          fail.style.display = 'block';
+        });
     });
-    document.getElementById('copy-btn').addEventListener('click', function (e) {
-      navigator.clipboard && navigator.clipboard.writeText(location.href);
-      e.currentTarget.textContent = 'Copied';
-      setTimeout(function () { e.currentTarget.textContent = 'Copy Link'; }, 1500);
-    });
+
+    var copyBtn = document.getElementById('copy-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function (e) {
+        if (navigator.clipboard) navigator.clipboard.writeText(location.href);
+        e.currentTarget.textContent = 'Copied';
+        setTimeout(function () { e.currentTarget.textContent = 'Copy Link'; }, 1500);
+      });
+    }
   })();
 </script>
 
