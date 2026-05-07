@@ -8,28 +8,28 @@
     "highlight": "immediately.",
     "after": ""
   },
-  "lede": "85-metre steel towers across productive Victorian farmland — without genuine community consent, and without the underground option ever being properly costed. Sign the petition demanding the project be halted, now.",
-  "photoCaption": "PHOTO HERE — VNI West corridor · Western Victoria",
+  "lede": "85-metre steel transmission towers cutting straight through Hillside, Plumpton, Sydenham and Taylors Hill — wiping value off every home in their shadow and erasing the suburban amenity families bought into. Sign the petition demanding the project be halted, now.",
+  "photoCaption": "PHOTO HERE — VNI West corridor through outer Melbourne suburbs",
   "stats": [
     { "num": "85m", "label": "Tower Height", "source": "Source: AusNet specs" },
     { "num": "240km", "label": "Of Overhead Lines", "source": "Source: AEMO ISP" },
-    { "num": "0", "label": "Independent Reviews", "source": "Inquiry submissions" }
+    { "num": "0", "label": "Property Impact Assessments", "source": "Government disclosures" }
   ],
   "argument": {
     "sectionLabel": "The Campaign",
     "h2": "This isn't a transmission line. It's an imposition on the West.",
-    "lede": "The Victoria–NSW Interconnect West (VNI West) is being pushed through with the kind of speed Governments reserve for things they don't want scrutinised. The route bisects irreplaceable farmland. The poles and wires are larger than anything previously built in the region. And the consultation has been a tick-box exercise on a foregone conclusion.",
-    "body": "I am calling on the Government to stop this project immediately, table the underlying modelling, and put the underground alternative on the same level of disclosure as the overhead route before another acquisition notice is served on a Victorian farming family.",
-    "quote": "The people whose land is being taken should not be the last people consulted. We will not accept a process that treats Western Victoria as an empty corridor.",
+    "lede": "The Victoria–NSW Interconnect West (VNI West) is being pushed through with the kind of speed Governments reserve for things they don't want scrutinised. The route runs straight through outer Melbourne's family suburbs — Hillside, Plumpton, Sydenham, Taylors Hill — at heights and proximities that will gut property values and erase the amenity people moved out west for. The consultation has been a tick-box exercise on a foregone conclusion.",
+    "body": "I am calling on the Government to stop this project immediately, table the underlying modelling, and put the underground alternative on the same level of disclosure as the overhead route — before more outer-west homeowners watch their biggest asset lose value to a tower they were never properly consulted on.",
+    "quote": "The people whose homes, streets and savings are on the line should not be the last people consulted. We will not accept a process that treats outer Melbourne as an empty corridor.",
     "quoteCite": "— Moira Deeming MP, Legislative Council",
     "planHeading": "What I'm asking the Parliament to do",
     "plan": [
       "Immediately halt all VNI West works, surveys and acquisition notices pending an independent route review.",
-      "Disclose, in full, every route-selection cost-benefit and environmental model relied on to date.",
+      "Disclose, in full, every route-selection cost-benefit and property-value impact model relied on to date.",
       "Cost the underground alternative on the same basis as the overhead route, and publish the comparison.",
-      "Establish a binding statutory community consultation right before any further land access.",
-      "Compensation parity with mining and pipeline easements, indexed for the life of the asset.",
-      "Independent assessment of the cumulative impact on farming communities across the entire corridor."
+      "A binding statutory community consultation right for every suburb on the route before any further land access.",
+      "Mandatory compensation for every homeowner whose property value is impacted — paid up-front, indexed for the life of the asset.",
+      "Independent assessment of the cumulative impact on outer Melbourne suburbs — house prices, amenity, sunlight, views — across the entire corridor."
     ],
     "whyHeading": "Why your signature matters",
     "whyBody": "A petition tabled in the Legislative Council is filed publicly with my office and recorded in the Council's papers. Every name signed against this project is a name the Government has to walk past on its way into the chamber. The bigger the petition, the harder it becomes to keep ignoring."
@@ -38,12 +38,13 @@
     { "text": "Australian Energy Market Operator (AEMO) — Integrated System Plan and VNI West project pages.", "url": "https://aemo.com.au/" },
     { "text": "AusNet / Transmission Company Victoria — VNI West proponent disclosures.", "url": "https://www.ausnet.com.au/" },
     { "text": "VicGrid (DEECA) — Victorian transmission planning.", "url": "https://www.energy.vic.gov.au/grid-and-energy-infrastructure/vicgrid" },
-    { "text": "Victorian Farmers Federation — community submissions on VNI West.", "url": "https://www.vff.org.au/" },
+    { "text": "Property Council of Australia — research on infrastructure and property values.", "url": "https://www.propertycouncil.com.au/" },
+    { "text": "Real Estate Institute of Victoria — suburb-level property market data.", "url": "https://reiv.com.au/" },
     { "text": "Parliament of Victoria — Hansard, Legislative Council.", "url": "https://www.parliament.vic.gov.au/hansard" }
   ],
   "petition": {
     "h2": "Sign the Petition",
-    "lede": "To the Legislative Council of Victoria — halt VNI West immediately, disclose the modelling, and put the people of Western Victoria first.",
+    "lede": "To the Legislative Council of Victoria — halt VNI West immediately, disclose the modelling, and put outer Melbourne homeowners first.",
     "submitLabel": "Add My Name to the Petition",
     "successHeading": "Thank you.",
     "successBody": "Your signature has been added. Now help build the pressure — share it with your community.",
