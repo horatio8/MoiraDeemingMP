@@ -69,11 +69,34 @@
           <div class="thanks-tick">✓</div>
           <h3 id="thanks-name" data-bind="petSuccessHeading"></h3>
           <p data-bind="petSuccessBody"></p>
-          <div class="share-row">
-            <button type="button" id="share-fb">Facebook</button>
-            <button type="button" id="share-x">Post</button>
-            <button type="button" id="copy-btn">Copy Link</button>
+          <div class="share-prompt">Share this petition</div>
+          <div class="share-grid">
+            <button type="button" class="share-btn share-btn--fb" id="share-fb" aria-label="Share on Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 10-11.6 9.9V14.9H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7c4.8-.8 8.5-5 8.5-9.9z"/></svg>
+              <span>Facebook</span>
+            </button>
+            <button type="button" class="share-btn share-btn--x" id="share-x" aria-label="Post on X">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 3H22l-7.4 8.5L23.3 21H16.5l-5.3-7-6.1 7H1.9L9.8 12 1.5 3h6.9l4.8 6.4L18.9 3zm-1.1 16h1.7L7.3 4.8H5.4L17.8 19z"/></svg>
+              <span>X</span>
+            </button>
+            <button type="button" class="share-btn share-btn--ig" id="share-ig" aria-label="Share on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg>
+              <span>Instagram</span>
+            </button>
+            <button type="button" class="share-btn share-btn--wa" id="share-wa" aria-label="Share on WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.2-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.4-1.4-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.2.3-.4.1-.2 0-.3-.1-.5-.1-.2-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1 2.7.1.2 1.8 2.7 4.3 3.8 2.5 1 2.5.7 2.9.6.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.3.1-1.4-.1-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.1-1.3c1.5.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+              <span>WhatsApp</span>
+            </button>
+            <button type="button" class="share-btn share-btn--em" id="share-email" aria-label="Share by email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+              <span>Email</span>
+            </button>
+            <button type="button" class="share-btn share-btn--cp" id="copy-btn" aria-label="Copy link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a5 5 0 007.07 0l3-3a5 5 0 00-7.07-7.07l-1.5 1.5"/><path d="M14 10a5 5 0 00-7.07 0l-3 3a5 5 0 007.07 7.07l1.5-1.5"/></svg>
+              <span>Copy Link</span>
+            </button>
           </div>
+          <div class="share-toast" id="share-toast"></div>
         </div>
       </div>
     </div>

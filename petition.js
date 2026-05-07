@@ -206,24 +206,69 @@
         });
     });
 
-    var copyBtn = document.getElementById('copy-btn');
-    if (copyBtn) {
-      copyBtn.addEventListener('click', function (e) {
-        if (navigator.clipboard) navigator.clipboard.writeText(location.href);
-        e.currentTarget.textContent = 'Copied';
-        setTimeout(function () { e.currentTarget.textContent = 'Copy Link'; }, 1500);
-      });
+    var url = location.href;
+    var shareText = (c.petition && c.petition.shareText) || c.title || '';
+    var emailSubject = shareText || (c.title || 'Sign this petition');
+    var emailBody = (shareText ? shareText + '\n\n' : '') + url;
+
+    var toastEl = document.getElementById('share-toast');
+    function toast(msg) {
+      if (!toastEl) return;
+      toastEl.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toast._t);
+      toast._t = setTimeout(function () { toastEl.classList.remove('show'); }, 2400);
     }
 
+    function open_(href) { window.open(href, '_blank', 'noopener'); }
+
     var fbBtn = document.getElementById('share-fb');
-    var xBtn = document.getElementById('share-x');
     if (fbBtn) fbBtn.addEventListener('click', function () {
-      window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href), '_blank');
+      open_('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url));
     });
+
+    var xBtn = document.getElementById('share-x');
     if (xBtn) xBtn.addEventListener('click', function () {
-      var text = (c.petition && c.petition.shareText) || c.title || '';
-      window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent(text), '_blank');
+      open_('https://twitter.com/intent/tweet?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(shareText));
     });
+
+    var igBtn = document.getElementById('share-ig');
+    if (igBtn) igBtn.addEventListener('click', async function () {
+      var data = { title: c.title, text: shareText, url: url };
+      if (navigator.share && (!navigator.canShare || navigator.canShare(data))) {
+        try { await navigator.share(data); return; } catch (err) { /* fall through to copy */ }
+      }
+      try {
+        if (navigator.clipboard) await navigator.clipboard.writeText(url);
+        toast('Link copied — paste it in your Instagram bio or story.');
+      } catch (err) {
+        toast('Copy this link, then paste into Instagram: ' + url);
+      }
+    });
+
+    var waBtn = document.getElementById('share-wa');
+    if (waBtn) waBtn.addEventListener('click', function () {
+      open_('https://wa.me/?text=' + encodeURIComponent((shareText ? shareText + ' ' : '') + url));
+    });
+
+    var emBtn = document.getElementById('share-email');
+    if (emBtn) emBtn.addEventListener('click', function () {
+      window.location.href =
+        'mailto:?subject=' + encodeURIComponent(emailSubject) +
+        '&body=' + encodeURIComponent(emailBody);
+    });
+
+    var copyBtn = document.getElementById('copy-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async function () {
+        try {
+          if (navigator.clipboard) await navigator.clipboard.writeText(url);
+          toast('Link copied to clipboard.');
+        } catch (err) {
+          toast('Couldn\'t copy. Select the URL bar and copy manually.');
+        }
+      });
+    }
   }
 
   fetch('/content/' + slug + '.json', { cache: 'no-store' })
