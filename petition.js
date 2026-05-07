@@ -251,6 +251,13 @@
       open_('https://wa.me/?text=' + encodeURIComponent((shareText ? shareText + ' ' : '') + url));
     });
 
+    var smsBtn = document.getElementById('share-sms');
+    if (smsBtn) smsBtn.addEventListener('click', function () {
+      var body = (shareText ? shareText + ' ' : '') + url;
+      // sms:?&body=… is the most universally accepted form across iOS + Android
+      window.location.href = 'sms:?&body=' + encodeURIComponent(body);
+    });
+
     var emBtn = document.getElementById('share-email');
     if (emBtn) emBtn.addEventListener('click', function () {
       window.location.href =
