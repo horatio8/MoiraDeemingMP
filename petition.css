@@ -1,4 +1,4 @@
-/* Petition pages — Moira Deeming MP. Purple + gold, simple, single-purpose. */
+/* Petition pages — Moira Deeming MP. Purple + gold. Form sticky top-right; info scrolls left. */
 
 :root {
   --purple: #6B2D8B;
@@ -25,7 +25,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── Brand strip ── */
+/* ── Brand strip (no menu) ── */
 .brand-strip {
   background: var(--purple-darkest);
   color: #fff;
@@ -62,23 +62,43 @@ body {
   margin-top: 4px;
 }
 
-/* ── Hero ── */
+/* ── Verify banner (editor note for stats) ── */
+.verify-banner {
+  background: #fff8d6;
+  border-bottom: 1px solid #f0e0a0;
+  color: #5a4a00;
+  text-align: center;
+  font-size: 12.5px;
+  padding: 10px 24px;
+  font-style: italic;
+}
+.verify-banner b { font-style: normal; font-weight: 700; }
+
+/* ── Page grid: left = info (scrolls), right = sign form (sticky) ── */
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 32px 64px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: start;
+}
+.left-col { min-width: 0; }
+.right-col { position: sticky; top: 24px; }
+
+/* ── Hero block (in left column, dark purple card) ── */
 .hero {
   position: relative;
-  padding: 72px 56px 64px;
+  padding: 48px 40px;
+  border-radius: 18px;
   color: #fff;
+  overflow: hidden;
   background:
-    radial-gradient(ellipse at 20% 0%, rgba(155,89,182,0.45), transparent 55%),
-    radial-gradient(ellipse at 100% 100%, rgba(255,215,0,0.1), transparent 50%),
+    radial-gradient(ellipse at 20% 0%, rgba(155,89,182,0.45), transparent 60%),
+    radial-gradient(ellipse at 100% 100%, rgba(255,215,0,0.12), transparent 50%),
     linear-gradient(135deg, var(--purple-darkest), var(--purple-deep) 60%, var(--purple) 110%);
-}
-.hero-grid {
-  max-width: 1080px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 48px;
-  align-items: center;
+  box-shadow: 0 20px 50px rgba(42,15,58,0.18);
 }
 .eyebrow {
   display: inline-block;
@@ -97,24 +117,27 @@ body {
 .hero h1 {
   font-family: 'Anton', sans-serif;
   font-weight: 400;
-  font-size: clamp(40px, 5.4vw, 68px);
+  font-size: clamp(38px, 4.8vw, 60px);
   line-height: 1.04;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  margin: 0 0 20px;
+  margin: 0 0 18px;
   color: #fff;
   text-wrap: balance;
 }
 .hero h1 .gold-word { color: var(--gold); }
 .hero .lede {
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.55;
   color: rgba(255,255,255,0.86);
-  max-width: 52ch;
+  max-width: 56ch;
   margin: 0;
 }
+
+/* ── Photo placeholder ── */
 .hero-photo {
-  height: 380px;
+  margin-top: 24px;
+  height: 280px;
   border-radius: 14px;
   background:
     radial-gradient(circle at 60% 30%, rgba(255,215,0,0.22), transparent 50%),
@@ -122,13 +145,13 @@ body {
   border: 1px solid rgba(255,255,255,0.15);
   position: relative;
   display: flex; align-items: flex-end; padding: 20px;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.18);
 }
 .hero-photo .photo-tag {
   font-family: 'JetBrains Mono', 'SF Mono', monospace;
   font-size: 10px;
   letter-spacing: 0.18em;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.65);
   text-transform: uppercase;
   background: rgba(0,0,0,0.4);
   border: 1px dashed rgba(255,255,255,0.3);
@@ -136,23 +159,150 @@ body {
   border-radius: 4px;
 }
 
-/* ── Petition section ── */
-.petition-section {
-  background: var(--purple-faint);
-  padding: 64px 24px 80px;
-  display: flex;
-  justify-content: center;
+/* ── Stats inline ── */
+.stats {
+  margin-top: 32px;
+  padding: 28px 32px;
+  background: var(--purple-darkest);
+  border-radius: 14px;
+  color: #fff;
+  border-top: 3px solid var(--gold);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
+.stat { text-align: center; }
+.stat .num {
+  font-family: 'Anton', sans-serif;
+  font-size: 36px;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.stat .lbl {
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+}
+.stat .src {
+  margin-top: 5px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.45);
+  font-style: italic;
+}
+
+/* ── Argument section ── */
+.argument {
+  margin-top: 40px;
+  padding: 8px 0 0;
+}
+.argument .section-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 12px;
+}
+.argument h2 {
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1.04;
+  margin: 0 0 18px;
+  color: var(--purple-deep);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.argument h3 {
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.1;
+  margin: 32px 0 14px;
+  color: var(--purple-deep);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.argument p { margin: 0 0 16px; color: var(--charcoal); font-size: 16px; }
+.argument p.lede { font-size: 17.5px; line-height: 1.6; color: var(--charcoal); }
+
+.argument ul.points {
+  list-style: none; padding: 0; margin: 16px 0 22px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.argument ul.points li {
+  display: grid; grid-template-columns: 30px 1fr; gap: 12px;
+  font-size: 15.5px;
+  line-height: 1.55;
+}
+.argument ul.points .marker {
+  width: 26px; height: 26px;
+  background: var(--purple);
+  color: var(--gold);
+  border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.quotebox {
+  background: var(--purple-faint);
+  border-left: 4px solid var(--gold);
+  padding: 22px 24px;
+  margin: 24px 0;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--purple-deep);
+}
+.quotebox cite {
+  display: block;
+  margin-top: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--purple);
+}
+
+.sources {
+  margin-top: 32px;
+  padding: 20px 22px;
+  background: #fafafa;
+  border: 1px solid var(--grey-light);
+  border-radius: 10px;
+  font-size: 13.5px;
+}
+.sources h4 {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--purple); margin: 0 0 10px;
+}
+.sources ol { padding-left: 18px; margin: 0; }
+.sources li { margin-bottom: 6px; line-height: 1.5; }
+.sources a { color: var(--purple); text-decoration: underline; }
+
+/* ── Petition card (sticky right column) ── */
 .petition {
   background: #fff;
   border: 2px solid var(--purple);
   border-radius: 16px;
-  padding: 32px 28px 28px;
-  box-shadow: 0 14px 40px rgba(42,15,58,0.12);
+  padding: 28px 26px 24px;
+  box-shadow: 0 14px 40px rgba(42,15,58,0.14);
   position: relative;
   overflow: hidden;
-  width: 100%;
-  max-width: 560px;
 }
 .petition::before {
   content: '';
@@ -162,7 +312,7 @@ body {
 .petition h2 {
   font-family: 'Anton', sans-serif;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 28px;
   line-height: 1.05;
   letter-spacing: 0.01em;
   margin: 0 0 8px;
@@ -170,10 +320,10 @@ body {
   text-transform: uppercase;
 }
 .petition .pet-lede {
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 1.55;
   color: var(--grey);
-  margin: 0 0 20px;
+  margin: 0 0 18px;
 }
 
 .field {
@@ -189,7 +339,7 @@ body {
 }
 .field label .req { color: var(--red); margin-left: 2px; }
 .field input {
-  height: 48px;
+  height: 46px;
   padding: 0 14px;
   font-family: 'Inter', sans-serif;
   font-size: 15px;
@@ -214,7 +364,7 @@ body {
   padding: 16px;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   border-radius: 10px;
@@ -253,13 +403,13 @@ body {
 /* Thank-you state */
 .thanks { text-align: center; padding: 8px 4px 4px; }
 .thanks-tick {
-  width: 64px; height: 64px;
+  width: 60px; height: 60px;
   border-radius: 999px;
   background: linear-gradient(135deg, #38c172, #1f9d55);
   margin: 0 auto 14px;
   display: flex; align-items: center; justify-content: center;
   color: #fff;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 700;
   box-shadow: 0 6px 20px rgba(31,157,85,0.3);
   animation: pop 0.4s cubic-bezier(.5,1.5,.5,1);
@@ -268,12 +418,12 @@ body {
 .thanks h3 {
   font-family: 'Anton', sans-serif;
   font-weight: 400;
-  font-size: 28px;
+  font-size: 26px;
   margin: 0 0 8px;
   color: var(--purple-deep);
   text-transform: uppercase;
 }
-.thanks p { font-size: 14px; color: var(--charcoal); line-height: 1.55; margin: 0 0 18px; }
+.thanks p { font-size: 13.5px; color: var(--charcoal); line-height: 1.55; margin: 0 0 18px; }
 .share-row { display: flex; gap: 8px; margin-top: 8px; }
 .share-row button {
   flex: 1;
@@ -301,9 +451,11 @@ body {
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .brand-strip { padding: 16px 20px; }
-  .hero { padding: 56px 20px 56px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
-  .hero-photo { height: 240px; }
-  .petition-section { padding: 48px 16px 64px; }
-  .petition { padding: 26px 22px 22px; }
+  .page { grid-template-columns: 1fr; padding: 24px 20px 56px; gap: 28px; }
+  .right-col { position: static; }
+  .hero { padding: 36px 24px; border-radius: 14px; }
+  .hero-photo { height: 220px; }
+  .stats { grid-template-columns: 1fr 1fr; gap: 18px; padding: 22px 24px; }
+  .argument { padding-top: 0; }
+  .argument h2 { font-size: 30px; }
 }
