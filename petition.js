@@ -18,15 +18,31 @@
   function render(c) {
     document.title = c.title || 'Petition';
 
+    // Full-width banner image at the top of the page (optional)
+    var banner = document.querySelector('[data-bind="banner"]');
+    if (banner) {
+      if (c.bannerUrl) {
+        var bImg = banner.querySelector('img');
+        if (bImg) bImg.src = c.bannerUrl;
+        banner.style.display = '';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+
     // Hero
     var eyebrow = document.querySelector('[data-bind="eyebrow"]');
     if (eyebrow) {
-      eyebrow.textContent = c.eyebrow || '';
-      if (c.eyebrowSize) {
-        eyebrow.style.fontSize = c.eyebrowSize + 'px';
-        // scale padding proportionally to keep the pill balanced
-        var scale = c.eyebrowSize / 11;
-        eyebrow.style.padding = (7 * scale).toFixed(0) + 'px ' + (14 * scale).toFixed(0) + 'px';
+      if (c.eyebrow) {
+        eyebrow.textContent = c.eyebrow;
+        if (c.eyebrowSize) {
+          eyebrow.style.fontSize = c.eyebrowSize + 'px';
+          // scale padding proportionally to keep the pill balanced
+          var scale = c.eyebrowSize / 11;
+          eyebrow.style.padding = (7 * scale).toFixed(0) + 'px ' + (14 * scale).toFixed(0) + 'px';
+        }
+      } else {
+        eyebrow.style.display = 'none';
       }
     }
 
@@ -37,7 +53,11 @@
       if (hl.before) parts.push(escapeHtml(hl.before));
       if (hl.highlight) parts.push('<span class="gold-word">' + escapeHtml(hl.highlight) + '</span>');
       if (hl.after) parts.push(escapeHtml(hl.after));
-      h1.innerHTML = parts.join(' ');
+      if (parts.length) {
+        h1.innerHTML = parts.join(' ');
+      } else {
+        h1.style.display = 'none';
+      }
     }
 
     var lede = document.querySelector('[data-bind="lede"]');

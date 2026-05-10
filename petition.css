@@ -25,6 +25,19 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ── Full-width banner (edge to edge) ── */
+.banner {
+  width: 100%;
+  display: block;
+  background: var(--purple-deep);
+  line-height: 0;
+}
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* ── Page grid ──
    Desktop: hero (col 1, row 1) | petition aside (col 2, rows 1+) | content (col 1, row 2)
    Mobile:  flex column → hero, petition, content (form lands right after the hero) */

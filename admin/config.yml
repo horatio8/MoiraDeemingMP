@@ -22,16 +22,18 @@ collections:
     fields:
       - { label: Page title (browser tab), name: title, widget: string }
       - { label: Canonical share URL, name: shareUrl, widget: string, required: false, hint: "Used by the share buttons (Facebook, X, WhatsApp, etc.) so links always point at the public domain. e.g. https://www.moiradeeming.com/cleanupvictoria" }
-      - { label: Eyebrow tag, name: eyebrow, widget: string, hint: "e.g. Active Petition · Community Safety" }
+      - { label: Edge-to-edge banner image, name: bannerUrl, widget: image, required: false, hint: "Full-width hero banner shown at the very top of the page. Leave empty to use the eyebrow + headline below instead." }
+      - { label: Eyebrow tag, name: eyebrow, widget: string, required: false, hint: "Gold pill above the headline. Leave empty to hide (e.g. when using a banner image)." }
       - { label: Eyebrow font size (px), name: eyebrowSize, widget: number, value_type: int, required: false, hint: "Default ~11. Set higher to enlarge the gold pill." }
-      - { label: Hero photo, name: photoUrl, widget: image, required: false, hint: "Replaces the gradient placeholder. Leave empty to keep placeholder." }
+      - { label: Hero photo, name: photoUrl, widget: image, required: false, hint: "Smaller photo below the hero / above the stats. Leave empty for the gradient placeholder." }
 
       - label: Headline
         name: headline
         widget: object
+        hint: "Leave all three fields empty to hide the headline (e.g. when the banner image already carries it)."
         fields:
           - { label: Before highlighted word, name: before, widget: string, required: false }
-          - { label: Highlighted word (gold), name: highlight, widget: string }
+          - { label: Highlighted word (gold), name: highlight, widget: string, required: false }
           - { label: After highlighted word, name: after, widget: string, required: false }
 
       - { label: Lede paragraph, name: lede, widget: text }
