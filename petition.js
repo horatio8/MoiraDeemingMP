@@ -25,6 +25,9 @@
         var bImg = banner.querySelector('img');
         if (bImg) bImg.src = c.bannerUrl;
         banner.style.display = '';
+        // When a banner is shown the dark-purple hero block is redundant —
+        // strip its background so the lede sits cleanly on the page.
+        document.body.classList.add('has-banner');
       } else {
         banner.style.display = 'none';
       }

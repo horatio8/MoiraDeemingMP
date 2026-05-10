@@ -68,6 +68,22 @@ body {
     linear-gradient(135deg, var(--purple-darkest), var(--purple-deep) 60%, var(--purple) 110%);
   box-shadow: 0 20px 50px rgba(42,15,58,0.18);
 }
+
+/* When the page has an edge-to-edge banner above, drop the dark hero
+   block so the lede blends into the page background. */
+body.has-banner .hero {
+  background: none;
+  color: var(--charcoal);
+  padding: 8px 0 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+body.has-banner .hero .lede {
+  color: var(--charcoal);
+  font-size: 19px;
+  line-height: 1.55;
+  max-width: 60ch;
+}
 .eyebrow {
   display: inline-block;
   font-size: 11px;
