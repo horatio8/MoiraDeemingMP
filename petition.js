@@ -86,8 +86,17 @@
     setText('[data-bind="argQuote"]', arg.quote);
     setText('[data-bind="argQuoteCite"]', arg.quoteCite);
     setText('[data-bind="argPlanHeading"]', arg.planHeading);
-    setText('[data-bind="argWhyHeading"]', arg.whyHeading);
-    setText('[data-bind="argWhyBody"]', arg.whyBody);
+
+    // Why-it-matters section: hide entirely when both fields are empty
+    var whyHEl = document.querySelector('[data-bind="argWhyHeading"]');
+    var whyBEl = document.querySelector('[data-bind="argWhyBody"]');
+    if (arg.whyHeading || arg.whyBody) {
+      if (whyHEl) whyHEl.textContent = arg.whyHeading || '';
+      if (whyBEl) whyBEl.textContent = arg.whyBody || '';
+    } else {
+      if (whyHEl) whyHEl.style.display = 'none';
+      if (whyBEl) whyBEl.style.display = 'none';
+    }
 
     var planEl = document.querySelector('[data-bind="argPlan"]');
     if (planEl) {
